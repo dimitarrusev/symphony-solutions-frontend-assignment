@@ -1,0 +1,8 @@
+{
+  "name": "symphony-solutions-frontend-assignment",
+  "version": "1.0.0",
+  "description": "Frontend assignment for Symphony Solutions.",
+  "main": "index.js",
+  "author": "dimitarrusev <contact@dimitarrusev.com>",
+  "license": "MIT"
+}
