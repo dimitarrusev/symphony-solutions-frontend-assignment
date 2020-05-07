@@ -1,23 +1,22 @@
-// const HtmlPlugin = require("html-webpack-plugin");
-
-import * as webpack from "webpack";
+import { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
-import { resolve } from "./utils";
+import { resolve } from "../utils";
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   entry: {
     index: resolve("src/index.tsx"),
   },
   output: {
     path: resolve("dist"),
-    filename: "app.budle.[hash].js",
+    filename: "app.bundle.[hash].js",
   },
-  mode: "development",
   resolve: {
     extensions: [".json", ".js", ".jsx", ".ts", ".tsx"],
   },
-  devtool: "source-map",
+  node: {
+    __dirname: false,
+  },
   module: {
     rules: [
       /* ------------------------------------------------------------------------------------ *
