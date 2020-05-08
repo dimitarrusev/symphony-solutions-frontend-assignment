@@ -9,7 +9,16 @@
     "start": "yarn start:dev",
     "start:dev": "cross-env MODE=development webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
     "start:prod": "cross-env MODE=production webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
-    "build": "cross-env MODE=production webpack --config ./config/webpack/webpack.config.ts"
+    "build": "yarn build:prod",
+    "build:dev": "cross-env MODE=development webpack --config ./config/webpack/webpack.config.ts",
+    "build:prod": "cross-env MODE=production webpack --config ./config/webpack/webpack.config.ts"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.9.6",
+    "@types/html-webpack-plugin": "^3.2.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -36,12 +45,5 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.9.6",
-    "@types/html-webpack-plugin": "^3.2.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "styled-components": "^5.1.0"
   }
 }
