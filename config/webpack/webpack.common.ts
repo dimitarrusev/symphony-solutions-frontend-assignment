@@ -4,12 +4,12 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { resolve } from "../utils";
 
 const config: Configuration = {
-  entry: {
-    app: resolve("src/index.tsx"),
-  },
+  // entry: {
+  //   app: resolve("src/index.tsx"),
+  // },
   output: {
     path: resolve("dist"),
-    filename: "app.bundle.[hash].js",
+    filename: "[name].[chunkhash].js",
   },
   resolve: {
     extensions: [".json", ".js", ".jsx", ".ts", ".tsx"],
@@ -34,7 +34,11 @@ const config: Configuration = {
           },
         ],
       },
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+
+      //
+      // outputted `.js` files will have sourcemaps re-processed by `source-map-loader`
+      //
+
       {
         enforce: "pre",
         test: /\.js$/,
@@ -51,34 +55,40 @@ const config: Configuration = {
 
   plugins: [
     new HtmlWebpackPlugin({
+      filename: "index.html",
       template: resolve("src/index.html"),
       favicon: resolve("src/assets/icons/favicon-32x32.png"),
-      inject: true,
-      filename: "index.html",
     }),
   ],
 
   /* ------------------------------------------------------------------------------------ *
    *                                                                                      *
-   * Externals                                                                            *
-   *                                                                                      *
-   * TODO:                                                                                *
-   * https://github.com/dimitarrusev/symphony-solutions-frontend-assignment/issues/14     *
-   *                                                                                      *
-   * ------------------------------------------------------------------------------------ *
-   *                                                                                      *
-   * When importing a module whose path matches one of the following, just assume a       *
-   * assume a corresponding global variable exists and use that instead.                  *
-   *                                                                                      *
-   * This is important because it allows us to avoid bundling all of our                  *
-   * dependencies, which allows browsers to cache those libraries between builds.         *
+   *  Optimization                                                                        *
    *                                                                                      *
    * ------------------------------------------------------------------------------------ */
 
-  // externals: {
-  //   react: "React",
-  //   "react-dom": "ReactDOM",
-  // },
+  optimization: {
+    runtimeChunk: "single",
+
+    splitChunks: {
+      chunks: "all",
+
+      cacheGroups: {
+        default: {
+          enforce: true,
+          priority: 1,
+        },
+
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: 2,
+          name: "vendors",
+          enforce: true,
+          chunks: "all",
+        },
+      },
+    },
+  },
 };
 
 export default config;
