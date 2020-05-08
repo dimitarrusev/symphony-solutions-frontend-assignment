@@ -5,7 +5,7 @@ import { resolve } from "../utils";
 
 const config: Configuration = {
   entry: {
-    index: resolve("src/index.tsx"),
+    app: resolve("src/index.tsx"),
   },
   output: {
     path: resolve("dist"),
@@ -54,7 +54,6 @@ const config: Configuration = {
       template: resolve("src/index.html"),
       favicon: resolve("src/assets/icons/favicon-32x32.png"),
       inject: true,
-      chunks: ["index"],
       filename: "index.html",
     }),
   ],
@@ -62,6 +61,9 @@ const config: Configuration = {
   /* ------------------------------------------------------------------------------------ *
    *                                                                                      *
    * Externals                                                                            *
+   *                                                                                      *
+   * TODO:                                                                                *
+   * https://github.com/dimitarrusev/symphony-solutions-frontend-assignment/issues/14     *
    *                                                                                      *
    * ------------------------------------------------------------------------------------ *
    *                                                                                      *
@@ -73,10 +75,10 @@ const config: Configuration = {
    *                                                                                      *
    * ------------------------------------------------------------------------------------ */
 
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
-  },
+  // externals: {
+  //   react: "React",
+  //   "react-dom": "ReactDOM",
+  // },
 };
 
 export default config;
