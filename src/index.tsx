@@ -3,9 +3,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 // Components
-import { App } from "./components/App";
+import App from "./containers/App";
 
-ReactDOM.render(
-  <App compiler="TypeScript" framework="React" />,
-  document.getElementById("app-root")
-);
+ReactDOM.render(<App />, document.getElementById("app-root"));
