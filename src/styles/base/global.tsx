@@ -57,7 +57,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: ${colors.blue};
+    color: ${colors.darkBlue};
   }
 
   ol,
