@@ -1,9 +1,37 @@
 // Vendor
-import React from "react";
+import React, { ReactElement } from "react";
 
 // Components
 import StyledTree from "./StyledTree";
+import TreeNode from "../TreeNode";
 
-const Tree: React.FC = ({ children }) => <StyledTree>{children}</StyledTree>;
+// Types
+export type TreeProps = {
+  data?: any[];
+};
+
+const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
+  const useImperativeAPI = data && !children;
+
+  return (
+    <>
+      {useImperativeAPI ? (
+        <StyledTree>
+          {data.map(({ id, label, children, isExpanded }) => (
+            <TreeNode
+              key={id}
+              id={id}
+              label={label}
+              children={children}
+              isExpanded={isExpanded}
+            />
+          ))}
+        </StyledTree>
+      ) : (
+        <StyledTree>{children}</StyledTree>
+      )}
+    </>
+  );
+};
 
 export default Tree;

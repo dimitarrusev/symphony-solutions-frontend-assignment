@@ -8,28 +8,20 @@ import TreeNode from "../components/TreeNode";
 // Styles
 import { GlobalStyle } from "../styles";
 
+// Data
+import data from "../utils/data";
+
 const App = () => (
   <>
     <GlobalStyle />
+    <h3>Imperative API Example:</h3>
+    <Tree data={data} />
+
+    <br />
+
+    <h3>Declarative API Example:</h3>
     <Tree>
-      <TreeNode label="Item 1" />
-      <TreeNode label="Item 2" hasChildren={true}>
-        <TreeNode label="Item 2-1" />
-        <TreeNode label="Item 2-2" hasChildren={true}>
-          <TreeNode label="Item 2-2-1" />
-          <TreeNode label="Item 2-2-2" hasChildren={true}>
-            <TreeNode label="Item 2-2-2-1" hasChildren={true}>
-              <TreeNode label="Item 2-2-2-1-1" />
-              <TreeNode label="Item 2-2-2-1-2" />
-              <TreeNode label="Item 2-2-2-1-3" />
-            </TreeNode>
-            <TreeNode label="Item 2-2-2-2" />
-          </TreeNode>
-          <TreeNode label="Item 2-2-3" />
-        </TreeNode>
-      </TreeNode>
-      <TreeNode label="Item 3" />
-      <TreeNode label="Item 4" />
+      <TreeNode key="1" id="1" label="Item 1" isExpanded={false} />
     </Tree>
   </>
 );

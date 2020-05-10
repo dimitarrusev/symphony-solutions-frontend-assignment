@@ -3,29 +3,31 @@ import React, { useState, ReactElement } from "react";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
 // Components
+import StyledTree from "../Tree/StyledTree";
 import StyledTreeNode from "./StyledTreeNode";
 
 // Types
 type TreeNodeProps = {
+  id: string;
   label: string;
-  hasChildren?: boolean;
   isExpanded?: boolean;
+  children?: any[];
 };
 
 type TreeNodeState = "is-expanded" | "is-collapsed";
 
 const TreeNode: React.FC<TreeNodeProps> = ({
+  id,
   label,
-  hasChildren,
+  children = [],
   isExpanded,
-  children,
 }): ReactElement => {
   const [treeNodeState, setTreeNodeState] = useState<TreeNodeState>(
     isExpanded ? "is-expanded" : "is-collapsed"
   );
 
-  const treeNodeClassName = `${hasChildren ? "has-children" : ""} ${
-    hasChildren && treeNodeState === "is-expanded" ? "is-expanded" : ""
+  const treeNodeClassName = `${children.length ? "has-children" : ""} ${
+    children.length && treeNodeState === "is-expanded" ? "is-expanded" : ""
   }`;
 
   const toggleTreeNodeState = () =>
@@ -34,14 +36,14 @@ const TreeNode: React.FC<TreeNodeProps> = ({
       : setTreeNodeState("is-expanded");
 
   return (
-    <StyledTreeNode className={treeNodeClassName}>
+    <StyledTreeNode key={id} className={treeNodeClassName}>
       {/* Label & Icon Wrapper */}
       <div className="label-and-icon-wrapper">
         {/* Label */}
         <span className="label">{label}</span>
 
         {/* Icon */}
-        {hasChildren && (
+        {Boolean(children.length) && (
           <span className="icon" onClick={toggleTreeNodeState}>
             {treeNodeState === "is-expanded" ? (
               <MdExpandLess />
@@ -53,7 +55,19 @@ const TreeNode: React.FC<TreeNodeProps> = ({
       </div>
 
       {/* Children */}
-      {hasChildren && <ul className="children-wrapper">{children}</ul>}
+      {Boolean(children.length) && (
+        <StyledTree className="children-wrapper">
+          {children.map(({ id, label, children, isExpanded }) => (
+            <TreeNode
+              key={id}
+              id={id}
+              label={label}
+              children={children}
+              isExpanded={isExpanded}
+            />
+          ))}
+        </StyledTree>
+      )}
     </StyledTreeNode>
   );
 };
