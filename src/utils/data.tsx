@@ -17,7 +17,7 @@ const data = [
     id: 2,
     label: "Item 2",
     isExpanded: false,
-    children: [
+    nodeChildren: [
       {
         id: 21,
         label: "Item 2-1",
@@ -32,7 +32,7 @@ const data = [
         id: 23,
         label: "Item 2-3",
         isExpanded: false,
-        children: [
+        nodeChildren: [
           {
             id: 231,
             label: "Item 2-3-1",
@@ -42,7 +42,7 @@ const data = [
             id: 232,
             label: "Item 2-3-2",
             isExpanded: false,
-            children: [
+            nodeChildren: [
               {
                 id: 2321,
                 label: "Item 2-3-2-1",
@@ -52,7 +52,7 @@ const data = [
                 id: 2322,
                 label: "Item 2-3-2-2",
                 isExpanded: false,
-                children: [
+                nodeChildren: [
                   {
                     id: 23221,
                     label: "Item 2-3-2-2-1",

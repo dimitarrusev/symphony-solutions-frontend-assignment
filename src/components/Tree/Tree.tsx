@@ -17,12 +17,12 @@ const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
     <>
       {useImperativeAPI ? (
         <StyledTree>
-          {data.map(({ id, label, children, isExpanded }) => (
+          {data.map(({ id, label, nodeChildren, isExpanded }) => (
             <TreeNode
               key={id}
               id={id}
               label={label}
-              children={children}
+              nodeChildren={nodeChildren}
               isExpanded={isExpanded}
             />
           ))}

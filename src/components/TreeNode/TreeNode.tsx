@@ -11,7 +11,7 @@ type TreeNodeProps = {
   id: string;
   label: string;
   isExpanded?: boolean;
-  children?: any[];
+  nodeChildren?: any[];
 };
 
 type TreeNodeState = "is-expanded" | "is-collapsed";
@@ -19,16 +19,29 @@ type TreeNodeState = "is-expanded" | "is-collapsed";
 const TreeNode: React.FC<TreeNodeProps> = ({
   id,
   label,
-  children = [],
+  nodeChildren = [],
   isExpanded,
+  children,
 }): ReactElement => {
   const [treeNodeState, setTreeNodeState] = useState<TreeNodeState>(
     isExpanded ? "is-expanded" : "is-collapsed"
   );
 
-  const treeNodeClassName = `${children.length ? "has-children" : ""} ${
-    children.length && treeNodeState === "is-expanded" ? "is-expanded" : ""
-  }`;
+  const treeNodeClassName = Boolean(nodeChildren.length)
+    ? `${nodeChildren.length ? "has-children" : ""} ${
+        nodeChildren.length && treeNodeState === "is-expanded"
+          ? "is-expanded"
+          : ""
+      }`
+    : Boolean(React.Children.toArray(children).length) &&
+      `${
+        Boolean(React.Children.toArray(children).length) ? "has-children" : ""
+      } ${
+        Boolean(React.Children.toArray(children).length) &&
+        treeNodeState === "is-expanded"
+          ? "is-expanded"
+          : ""
+      }`;
 
   const toggleTreeNodeState = () =>
     treeNodeState === "is-expanded"
@@ -43,7 +56,9 @@ const TreeNode: React.FC<TreeNodeProps> = ({
         <span className="label">{label}</span>
 
         {/* Icon */}
-        {Boolean(children.length) && (
+        {Boolean(
+          nodeChildren.length
+        ) /* IF `nodeChildren.length` is  truthy => using imperative API */ ? (
           <span className="icon" onClick={toggleTreeNodeState}>
             {treeNodeState === "is-expanded" ? (
               <MdExpandLess />
@@ -51,22 +66,37 @@ const TreeNode: React.FC<TreeNodeProps> = ({
               <MdExpandMore />
             )}
           </span>
+        ) : (
+          /* ELSE (`nodeChildren.length` is falsy) => using declarative API */
+          Boolean(React.Children.toArray(children).length) && (
+            <span className="icon" onClick={toggleTreeNodeState}>
+              {treeNodeState === "is-expanded" ? (
+                <MdExpandLess />
+              ) : (
+                <MdExpandMore />
+              )}
+            </span>
+          )
         )}
       </div>
 
       {/* Children */}
-      {Boolean(children.length) && (
+      {Boolean(nodeChildren.length) ? (
         <StyledTree className="children-wrapper">
-          {children.map(({ id, label, children, isExpanded }) => (
+          {nodeChildren.map(({ id, label, nodeChildren, isExpanded }) => (
             <TreeNode
               key={id}
               id={id}
               label={label}
-              children={children}
+              nodeChildren={nodeChildren}
               isExpanded={isExpanded}
             />
           ))}
         </StyledTree>
+      ) : (
+        Boolean(React.Children.toArray(children).length) && (
+          <StyledTree className="children-wrapper">{children}</StyledTree>
+        )
       )}
     </StyledTreeNode>
   );
