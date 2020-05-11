@@ -2,6 +2,10 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Available scripts](#available-scripts)
+  - [Tree component](#tree-component)
+    - [Declarative API](#declarative-api)
+    - [Imperative API](#imperative-api)
 
 ## Installation
 
@@ -14,16 +18,15 @@ You'll need to have the following dependencies installed on your system:
 
 ### Available scripts
 
-| **script**        | **description**                                    |
-| ----------------- | -------------------------------------------------- |
-| `yarn build`      | Builds the app and outputs the assets in `./dist`. |
-|                   | \*defaults to `yarn build:prod`.                   |
-| `yarn build:dev`  | Builds the app and outputs the assets in `./dist`. |
-|                   | \*sets `NODE_ENV` to `development`.                |
-| `yarn build:prod` | Builds the app and outputs the assets in `./dist`. |
-|                   | \*sets `NODE_ENV` to `production`.                 |
+| **script**                 | **description**                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| `yarn build`               | Builds the app and outputs the assets in `./dist`. \*defaults to `yarn build:prod`.      |
+| `yarn build:dev`           | Builds the app and outputs the assets in `./dist`. \*sets `NODE_ENV` to `development`.   |
+| `yarn build:prod`          | Builds the app and outputs the assets in `./dist`. \*sets `NODE_ENV` to `production`.    |
 
 ### Tree component
+
+Tree component offers two APIs — Declarative and Imperative:
 
 #### Declarative API
 
