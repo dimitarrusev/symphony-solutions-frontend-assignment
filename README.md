@@ -20,9 +20,13 @@ You'll need to have the following dependencies installed on your system:
 
 | **script**                 | **description**                                                                          |
 | -------------------------- | ---------------------------------------------------------------------------------------- |
-| `yarn build`               | Builds the app and outputs the assets in `./dist`. \*defaults to `yarn build:prod`.      |
-| `yarn build:dev`           | Builds the app and outputs the assets in `./dist`. \*sets `NODE_ENV` to `development`.   |
-| `yarn build:prod`          | Builds the app and outputs the assets in `./dist`. \*sets `NODE_ENV` to `production`.    |
+| `yarn start:api`           | Spins up [mock REST API server](https://github.com/typicode/json-server). \*available at [http://localhost:3000/data](http://localhost:3000/data).
+| `yarn start:app`           | Spins up [local development server](https://webpack.js.org/configuration/dev-server/). \*available at [http://localhost:8080/](http://localhost:8080/) \*defaults to `yarn start:app:dev`.
+| `yarn start:app:dev`       | Spins up [local development server](https://webpack.js.org/configuration/dev-server/). \*available at [http://localhost:8080/](http://localhost:8080/) \*sets `NODE_ENV` to `development`.
+| `yarn start:app:prod`      | Spins up [local development server](https://webpack.js.org/configuration/dev-server/). \*available at [http://localhost:8080/](http://localhost:8080/) \*sets `NODE_ENV` to `production`.
+| `yarn build:app`           | Builds the app and outputs the assets in `./dist`. \*defaults to `yarn build:app:prod`.
+| `yarn build:app:dev`       | Builds the app and outputs the assets in `./dist`. \*sets `NODE_ENV` to `development`.   |
+| `yarn build:app:prod`      | Builds the app and outputs the assets in `./dist`. \*sets `NODE_ENV` to `production`.    |
 
 ### Tree component
 
