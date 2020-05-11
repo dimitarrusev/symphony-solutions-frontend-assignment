@@ -3,14 +3,14 @@ import React, { ReactElement } from "react";
 
 // Components
 import StyledTree from "./StyledTree";
-import TreeNode from "../TreeNode";
+import { TreeNode, TreeNodeState } from "../TreeNode";
 
 // Types
 export type TreeProps = {
   data?: any[];
 };
 
-const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
+export const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
   const useImperativeAPI = data && !children;
 
   return (
@@ -33,5 +33,3 @@ const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
     </>
   );
 };
-
-export default Tree;

@@ -1,29 +1,33 @@
 // Vendor
-import React, { useState, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
 // Components
 import StyledTree from "../Tree/StyledTree";
 import StyledTreeNode from "./StyledTreeNode";
 
+// Hooks
+import { useTreeNode } from "./";
+
 // Types
-type TreeNodeProps = {
+export type TreeNodeProps = {
   id: string;
   label: string;
   isExpanded?: boolean;
   nodeChildren?: any[];
 };
 
-type TreeNodeState = "is-expanded" | "is-collapsed";
+export type TreeNodeState = "is-expanded" | "is-collapsed";
 
-const TreeNode: React.FC<TreeNodeProps> = ({
+// Component
+export const TreeNode: React.FC<TreeNodeProps> = ({
   id,
   label,
   nodeChildren = [],
   isExpanded,
   children,
 }): ReactElement => {
-  const [treeNodeState, setTreeNodeState] = useState<TreeNodeState>(
+  const [treeNodeState, toggleTreeNodeState] = useTreeNode(
     isExpanded ? "is-expanded" : "is-collapsed"
   );
 
@@ -42,11 +46,6 @@ const TreeNode: React.FC<TreeNodeProps> = ({
           ? "is-expanded"
           : ""
       }`;
-
-  const toggleTreeNodeState = () =>
-    treeNodeState === "is-expanded"
-      ? setTreeNodeState("is-collapsed")
-      : setTreeNodeState("is-expanded");
 
   return (
     <StyledTreeNode key={id} className={treeNodeClassName}>
@@ -101,5 +100,3 @@ const TreeNode: React.FC<TreeNodeProps> = ({
     </StyledTreeNode>
   );
 };
-
-export default TreeNode;

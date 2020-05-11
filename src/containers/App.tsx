@@ -2,8 +2,8 @@
 import * as React from "react";
 
 // Components
-import Tree from "../components/Tree";
-import TreeNode from "../components/TreeNode";
+import { Tree } from "../components/Tree";
+import { TreeNode } from "../components/TreeNode";
 
 // Styles
 import { GlobalStyle } from "../styles";
