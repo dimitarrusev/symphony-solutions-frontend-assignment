@@ -1,3 +1,9 @@
+![Symphony Solutions Logo](http://www.topdesignfirms.com/pub/companyLogo/20180316081014_symphonylogo.png)
+
+# Frontend Assignment for Symphony Solutions
+
+**NOTES TO THE REVIEWER**: have yet to be written (hopefully on time) as i have to get some shut-eye badly...
+
 ## Table of Contents
 
 - [Installation](#installation)
