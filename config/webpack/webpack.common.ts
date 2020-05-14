@@ -4,9 +4,6 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { resolve } from "../utils";
 
 const config: Configuration = {
-  // entry: {
-  //   app: resolve("src/index.tsx"),
-  // },
   output: {
     path: resolve("dist"),
     filename: "[name].[chunkhash].js",

@@ -5,16 +5,32 @@
  * ------------------------------------------------------------------------------------ */
 
 // Vendor
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+
+// Context
+import { TreeContextProvider } from "../context";
 
 // Components
-import Root from "./containers/Root";
+import App from "./App";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- *  Root                                                                                *
+ *  Component                                                                           *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+const Root = () => {
+  return (
+    <TreeContextProvider>
+      <App />
+    </TreeContextProvider>
+  );
+};
+
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ *  Exports                                                                             *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
+
+export default Root;

@@ -1,20 +1,18 @@
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- *  Imports                                                                             *
+ *  Typography                                                                          *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-// Vendor
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-
-// Components
-import Root from "./containers/Root";
+const typography = {
+  fontFamily: "'DM Mono', monospace",
+  fontSizeRoot: "62.5%",
+};
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- *  Root                                                                                *
+ *  Exports                                                                             *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+export { typography };

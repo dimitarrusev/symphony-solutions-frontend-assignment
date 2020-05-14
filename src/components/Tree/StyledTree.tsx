@@ -5,16 +5,23 @@
  * ------------------------------------------------------------------------------------ */
 
 // Vendor
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-
-// Components
-import Root from "./containers/Root";
+import styled from "styled-components";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- *  Root                                                                                *
+ *  Component                                                                           *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+const StyledTree = styled.ul`
+  margin: 0;
+  padding: 0;
+`;
+
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ *  Exports                                                                             *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
+
+export default StyledTree;

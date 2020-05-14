@@ -6,27 +6,32 @@
   "author": "dimitarrusev <contact@dimitarrusev.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn start:dev",
-    "start:dev": "cross-env MODE=development webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
-    "start:prod": "cross-env MODE=production webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
-    "build": "yarn build:prod",
-    "build:dev": "cross-env MODE=development webpack --config ./config/webpack/webpack.config.ts",
-    "build:prod": "cross-env MODE=production webpack --config ./config/webpack/webpack.config.ts"
+    "start:api": "json-server --delay 1000 --watch ./src/utils/data/data.json",
+    "start:app": "yarn start:app:dev",
+    "start:app:dev": "cross-env MODE=development webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
+    "start:app:prod": "cross-env MODE=production webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
+    "build:app": "yarn build:app:prod",
+    "build:app:dev": "cross-env MODE=development webpack --config ./config/webpack/webpack.config.ts",
+    "build:app:prod": "cross-env MODE=production webpack --config ./config/webpack/webpack.config.ts"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.6",
-    "@types/html-webpack-plugin": "^3.2.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
+    "@types/html-webpack-plugin": "^3.2.2",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
+    "@types/react-icons": "^3.0.0",
+    "@types/styled-components": "^5.1.0",
     "@types/webpack": "^4.41.12",
     "@types/webpack-dev-server": "^3.10.1",
     "@types/webpack-merge": "^4.1.5",
@@ -34,6 +39,7 @@
     "cross-env": "^7.0.2",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "json-server": "^0.16.1",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^7.0.3",
     "ts-node": "^8.10.1",
