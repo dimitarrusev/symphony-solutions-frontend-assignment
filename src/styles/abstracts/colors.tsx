@@ -6,14 +6,17 @@ const colors = {
   mediumGrey: "#A3A3A3",
   darkGrey: "#939393",
 
-  black: "#0E0E0E",
+  ultralightGreen: "#ABFDE3",
+  lightGreen: "#0faa7d",
+  mediumGreen: "#139670",
+  darkGreen: "#177157",
 
   ultralightBlue: "#1a18f70f",
   lightBlue: "#1a18f742",
   mediumBlue: "#1a18f7c2",
   darkBlue: "#1A18F7",
 
-  red: "#FF2929",
+  black: "#0E0E0E",
 };
 
 export { colors };

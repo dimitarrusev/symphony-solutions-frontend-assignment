@@ -4,44 +4,51 @@
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-// Vendor
-import React from "react";
-
-// Context
-import { useTree, TreeContextProvider } from "../context";
-
-// Components
-import { Tree } from "../components/Tree";
-
-// Styles
-import { GlobalStyle } from "../styles";
+import { ReactNode } from "react";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- * Component                                                                            *
+ *  Types                                                                               *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-const App = () => {
-  const { treeState, setTreeState } = useTree();
+type TreePropsType = {
+  data?: any[];
+};
 
-  return (
-    <>
-      <GlobalStyle />
+type TreeDataPropType = {
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
+  treeNodes: TreeNodePropsType[];
+  totalExpandableTreeNodes: number;
+  totalExpandedTreeNodes: number;
+};
 
-      <h3>Imperative API Example:</h3>
+type TreeNodePropsType = {
+  id: string;
+  label: string;
+  isExpanded?: boolean;
+  nodeChildren?: TreeNodePropsType[];
+};
 
-      <br />
+type TreeNodeIsExpandedPropType = "is-expanded" | "is-collapsed";
 
-      <TreeContextProvider>
-        {treeState.isLoading ? (
-          <h4>Loading...</h4>
-        ) : (
-          <Tree data={treeState.treeNodes} />
-        )}
-      </TreeContextProvider>
-    </>
-  );
+type TreeContextType = {
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
+  treeState: TreeDataPropType;
+  setTreeState: (value: TreeDataPropType) => void;
+};
+
+type TreeContextProviderPropsType = {
+  children: ReactNode;
+};
+
+type ButtonPropsType = {
+  className?: string;
+  children: ReactNode;
+  href?: string;
+  icon?: "plus" | "minus";
 };
 
 /* ------------------------------------------------------------------------------------ *
@@ -50,4 +57,12 @@ const App = () => {
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-export default App;
+export {
+  TreePropsType,
+  TreeDataPropType,
+  TreeNodePropsType,
+  TreeNodeIsExpandedPropType,
+  TreeContextType,
+  TreeContextProviderPropsType,
+  ButtonPropsType,
+};

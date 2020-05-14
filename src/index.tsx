@@ -1,8 +1,20 @@
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ *  Imports                                                                             *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
+
 // Vendor
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 // Components
-import App from "./containers/App";
+import Root from "./containers/Root";
 
-ReactDOM.render(<App />, document.getElementById("app-root"));
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ *  Root                                                                                *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
+
+ReactDOM.render(<Root />, document.getElementById("root"));

@@ -6,7 +6,7 @@
   "author": "dimitarrusev <contact@dimitarrusev.com>",
   "license": "MIT",
   "scripts": {
-    "start:api": "json-server --delay 1000 --watch ./src/utils/data.json",
+    "start:api": "json-server --delay 1000 --watch ./src/utils/data/data.json",
     "start:app": "yarn start:app:dev",
     "start:app:dev": "cross-env MODE=development webpack-dev-server --config ./config/webpack/webpack.config.ts --open",
     "start:app:prod": "cross-env MODE=production webpack-dev-server --config ./config/webpack/webpack.config.ts --open",

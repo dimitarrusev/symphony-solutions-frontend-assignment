@@ -8,39 +8,22 @@
 import React from "react";
 
 // Context
-import { useTree, TreeContextProvider } from "../context";
+import { TreeContextProvider } from "../context";
 
 // Components
-import { Tree } from "../components/Tree";
-
-// Styles
-import { GlobalStyle } from "../styles";
+import App from "./App";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- * Component                                                                            *
+ *  Component                                                                           *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-const App = () => {
-  const { treeState, setTreeState } = useTree();
-
+const Root = () => {
   return (
-    <>
-      <GlobalStyle />
-
-      <h3>Imperative API Example:</h3>
-
-      <br />
-
-      <TreeContextProvider>
-        {treeState.isLoading ? (
-          <h4>Loading...</h4>
-        ) : (
-          <Tree data={treeState.treeNodes} />
-        )}
-      </TreeContextProvider>
-    </>
+    <TreeContextProvider>
+      <App />
+    </TreeContextProvider>
   );
 };
 
@@ -50,4 +33,4 @@ const App = () => {
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-export default App;
+export default Root;

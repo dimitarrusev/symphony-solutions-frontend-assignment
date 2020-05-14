@@ -1,20 +1,33 @@
-// Vendor
-import { useState } from "react";
+// // Vendor
+// import { useState } from "react";
 
-// Types
-import { TreeNodeState } from "./";
+// // Types
+// import { TreeNodeState } from "./";
 
-// Hook
-export const useTreeNode = (defaultState: TreeNodeState = "is-collapsed") => {
-  const [treeNodeState, setTreeNodeState] = useState<any>(
-    defaultState
-  ); /* TODO: add appropriate type(s) */
+// // Hooks
+// import { useTree } from "../../hooks";
 
-  function toggleTreeNodeState() {
-    return treeNodeState === "is-expanded"
-      ? setTreeNodeState("is-collapsed")
-      : setTreeNodeState("is-expanded");
-  }
+// export const useTreeNode = (
+//   initialTreenNodeState: TreeNodeState = "is-collapsed"
+// ) => {
+//   const [treeNodeState, setTreeNodeState] = useState<TreeNodeState>(
+//     initialTreenNodeState
+//   );
+//   const { treeState, setTreeState } = useTree();
 
-  return [treeNodeState, toggleTreeNodeState];
-};
+//   function toggleTreeNodeState(id: number) {
+//     //
+//     // clone current treeState
+//     //
+//     // find treeNode which id matches the id that is passed as arg, and flip the isExpanded prop
+//     //
+//     // finally set the new TreeState
+//     //
+
+//     const tempTreeState = Object.assign({}, treeState);
+
+//     console.log(`tempTreeState:`, tempTreeState);
+//   }
+
+//   return { treeNodeState, toggleTreeNodeState };
+// };

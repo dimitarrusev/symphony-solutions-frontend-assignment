@@ -6,15 +6,13 @@
 
 // Vendor
 import React from "react";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
-// Context
-import { useTree, TreeContextProvider } from "../context";
+// Types
+import { ButtonPropsType } from "../../utils/types";
 
 // Components
-import { Tree } from "../components/Tree";
-
-// Styles
-import { GlobalStyle } from "../styles";
+import StyledButton from "./StyledButton";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
@@ -22,25 +20,17 @@ import { GlobalStyle } from "../styles";
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-const App = () => {
-  const { treeState, setTreeState } = useTree();
-
+const Button = ({ className, href, icon, children }: ButtonPropsType) => {
   return (
-    <>
-      <GlobalStyle />
+    <StyledButton className={className} href={href}>
+      <span className="label">{children}</span>
 
-      <h3>Imperative API Example:</h3>
-
-      <br />
-
-      <TreeContextProvider>
-        {treeState.isLoading ? (
-          <h4>Loading...</h4>
-        ) : (
-          <Tree data={treeState.treeNodes} />
-        )}
-      </TreeContextProvider>
-    </>
+      {icon === "plus" ? (
+        <FaPlus className="icon" />
+      ) : (
+        <FaMinus className="icon" />
+      )}
+    </StyledButton>
   );
 };
 
@@ -50,4 +40,4 @@ const App = () => {
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-export default App;
+export default Button;

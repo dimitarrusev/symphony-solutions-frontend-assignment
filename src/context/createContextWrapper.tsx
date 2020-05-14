@@ -5,44 +5,36 @@
  * ------------------------------------------------------------------------------------ */
 
 // Vendor
-import React from "react";
+import { createContext, useContext } from "react";
 
-// Context
-import { useTree, TreeContextProvider } from "../context";
-
-// Components
-import { Tree } from "../components/Tree";
-
-// Styles
-import { GlobalStyle } from "../styles";
+// Types
+import { TreeContextType } from "../utils/types";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
- * Component                                                                            *
+ *  Wrapper                                                                             *
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-const App = () => {
-  const { treeState, setTreeState } = useTree();
+function createContextWrapper<TreeContextType>() {
+  const context = createContext<TreeContextType | undefined>(undefined);
 
-  return (
-    <>
-      <GlobalStyle />
+  function useCtx() {
+    const ctx = useContext(context);
 
-      <h3>Imperative API Example:</h3>
+    //
+    // TODO: Fix this!
+    //
 
-      <br />
+    // if (!ctx) {
+    //   throw new Error("`useCtx` must be within a `Provider` and must have a value!");
+    // }
 
-      <TreeContextProvider>
-        {treeState.isLoading ? (
-          <h4>Loading...</h4>
-        ) : (
-          <Tree data={treeState.treeNodes} />
-        )}
-      </TreeContextProvider>
-    </>
-  );
-};
+    return ctx;
+  }
+
+  return [useCtx, context.Provider] as const;
+}
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
@@ -50,4 +42,4 @@ const App = () => {
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-export default App;
+export { createContextWrapper };

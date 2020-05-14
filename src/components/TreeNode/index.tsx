@@ -1,3 +1,4 @@
-export * from "./TreeNode";
-export * from "./StyledTreeNode";
-export * from "./useTreeNode";
+import TreeNode from "./TreeNode";
+import StyledTreeNode from "./StyledTreeNode";
+
+export { TreeNode, StyledTreeNode };

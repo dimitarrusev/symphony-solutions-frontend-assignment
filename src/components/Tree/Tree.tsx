@@ -1,16 +1,31 @@
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ *  Imports                                                                             *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
+
 // Vendor
 import React, { ReactElement } from "react";
 
+// Types
+import { TreePropsType } from "../../utils/types";
+
+// Context
+import { useTree } from "../../context";
+
 // Components
 import StyledTree from "./StyledTree";
-import { TreeNode, TreeNodeState } from "../TreeNode";
+import { TreeNode } from "../TreeNode";
+import Button from "../Button";
 
-// Types
-export type TreeProps = {
-  data?: any[];
-};
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ * Component                                                                            *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
 
-export const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
+const Tree: React.FC<TreePropsType> = ({ data, children }): ReactElement => {
+  const { treeState, setTreeState } = useTree();
   const useImperativeAPI = data && !children;
 
   return (
@@ -30,6 +45,26 @@ export const Tree: React.FC<TreeProps> = ({ data, children }): ReactElement => {
       ) : (
         <StyledTree>{children}</StyledTree>
       )}
+
+      <br />
+
+      {treeState.totalExpandableTreeNodes - treeState.totalExpandedTreeNodes >=
+      1 ? (
+        <Button icon="plus">Expand all</Button>
+      ) : (
+        treeState.totalExpandedTreeNodes ===
+          treeState.totalExpandableTreeNodes && (
+          <Button icon="minus">Collapse all</Button>
+        )
+      )}
     </>
   );
 };
+
+/* ------------------------------------------------------------------------------------ *
+ *                                                                                      *
+ *  Exports                                                                             *
+ *                                                                                      *
+ * ------------------------------------------------------------------------------------ */
+
+export { Tree };
