@@ -4,8 +4,8 @@
 - [Usage](#usage)
   - [Available scripts](#available-scripts)
   - [Tree component](#tree-component)
-    - [Declarative API](#declarative-api)
     - [Imperative API](#imperative-api)
+    - [Declarative API](#declarative-api)
 
 ## Installation
 
@@ -15,6 +15,13 @@ You'll need to have the following dependencies installed on your system:
 - [Yarn](https://classic.yarnpkg.com/) **v1.22.0** (or higher)
 
 ## Usage
+
+Once you have the repo cloned and dependencies installed (by executning the `yarn` or `yarn install` command): 
+
+1. Spin up the mock REST API server in one terminal window by executing `yarn start:api` command
+2. Spin up the local development server in another terminal window by executing `yarn start:app` command
+
+Then, in your browser, you can navigate to `http://localhost:8080/` to view the app!
 
 ### Available scripts
 
@@ -32,7 +39,16 @@ You'll need to have the following dependencies installed on your system:
 
 Tree component offers two APIs — Declarative and Imperative:
 
+#### Imperative API
+
+```jsx
+  <h3>Imperative API Example:</h3>
+  <Tree data={data} />
+```
+
 #### Declarative API
+
+**IMPORTANT**: This is not working for the time being, **needs to be re-written**!
 
 ```jsx
   <h3>Declarative API Example:</h3>
@@ -107,11 +123,4 @@ Tree component offers two APIs — Declarative and Imperative:
     {/* <!-- Item 4 --> */}
     <TreeNode key="4" id="4" label="Item 4" isExpanded={false} />
   </Tree>
-```
-
-#### Imperative API
-
-```jsx
-  <h3>Imperative API Example:</h3>
-  <Tree data={data} />
 ```
