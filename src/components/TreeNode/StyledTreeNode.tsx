@@ -53,14 +53,6 @@ const StyledTreeNode = styled.li`
     }
   }
 
-  > .children-wrapper {
-    height: 0;
-
-    opacity: 0;
-
-    visibility: hidden;
-  }
-
   /*
   // States
   */
@@ -76,7 +68,7 @@ const StyledTreeNode = styled.li`
   }
 
   &.is-expanded {
-    > .children-wrapper {
+    .children-wrapper {
       height: auto;
 
       opacity: 1;
@@ -88,6 +80,26 @@ const StyledTreeNode = styled.li`
       .icon {
         svg {
           fill: ${() => colors.mediumBlue};
+        }
+      }
+    }
+  }
+
+  &.is-collapsed {
+    .children-wrapper {
+      height: 0;
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      &.is-expanded {
+        .children-wrapper {
+          height: 0;
+
+          opacity: 0;
+
+          visibility: hidden;
         }
       }
     }

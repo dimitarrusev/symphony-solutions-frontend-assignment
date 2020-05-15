@@ -62,9 +62,9 @@ const TreeNode: React.FC<TreeNodePropsType> = ({
 
   const treeNodeClassName = Boolean(nodeChildren.length)
     ? `${Boolean(nodeChildren.length) && "has-children"} ${
-        Boolean(nodeChildren.length) &&
-        Boolean(treeNodeState === "is-expanded") &&
-        "is-expanded"
+        Boolean(nodeChildren.length) && Boolean(treeNodeState === "is-expanded")
+          ? "is-expanded"
+          : "is-collapsed"
       }`
     : Boolean(React.Children.toArray(children).length) &&
       `${
