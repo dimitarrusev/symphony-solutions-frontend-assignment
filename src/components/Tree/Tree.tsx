@@ -16,7 +16,6 @@ import { useTree } from "../../context";
 // Components
 import StyledTree from "./StyledTree";
 import { TreeNode } from "../TreeNode";
-import Button from "../Button";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
@@ -25,7 +24,7 @@ import Button from "../Button";
  * ------------------------------------------------------------------------------------ */
 
 const Tree: React.FC<TreePropsType> = ({ data, children }): ReactElement => {
-  const { treeState, setTreeState } = useTree();
+  const { isLoading, setIsLoading, treeState, setTreeState } = useTree();
   const useImperativeAPI = data && !children;
 
   return (
@@ -44,18 +43,6 @@ const Tree: React.FC<TreePropsType> = ({ data, children }): ReactElement => {
         </StyledTree>
       ) : (
         <StyledTree>{children}</StyledTree>
-      )}
-
-      <br />
-
-      {treeState.totalExpandableTreeNodes - treeState.totalExpandedTreeNodes >=
-      1 ? (
-        <Button icon="plus">Expand all</Button>
-      ) : (
-        treeState.totalExpandedTreeNodes ===
-          treeState.totalExpandableTreeNodes && (
-          <Button icon="minus">Collapse all</Button>
-        )
       )}
     </>
   );

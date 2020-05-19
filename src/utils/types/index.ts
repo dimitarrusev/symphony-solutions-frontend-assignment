@@ -46,6 +46,7 @@ type TreeContextProviderPropsType = {
 
 type ButtonPropsType = {
   className?: string;
+  onClick?: any;
   children: ReactNode;
   href?: string;
   icon?: "plus" | "minus";

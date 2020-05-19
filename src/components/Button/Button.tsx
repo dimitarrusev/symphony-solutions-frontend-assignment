@@ -20,9 +20,15 @@ import StyledButton from "./StyledButton";
  *                                                                                      *
  * ------------------------------------------------------------------------------------ */
 
-const Button = ({ className, href, icon, children }: ButtonPropsType) => {
+const Button = ({
+  className,
+  onClick,
+  href,
+  icon,
+  children,
+}: ButtonPropsType) => {
   return (
-    <StyledButton className={className} href={href}>
+    <StyledButton className={className} href={href} onClick={onClick}>
       <span className="label">{children}</span>
 
       {icon === "plus" ? (

@@ -8,7 +8,7 @@
     {
       "id": 2,
       "label": "Item 2",
-      "isExpanded": true,
+      "isExpanded": false,
       "nodeChildren": [
         {
           "id": 21,
@@ -23,7 +23,7 @@
         {
           "id": 23,
           "label": "Item 2-3",
-          "isExpanded": true,
+          "isExpanded": false,
           "nodeChildren": [
             {
               "id": 231,
@@ -33,7 +33,7 @@
             {
               "id": 232,
               "label": "Item 2-3-2",
-              "isExpanded": true,
+              "isExpanded": false,
               "nodeChildren": [
                 {
                   "id": 2321,
@@ -43,7 +43,7 @@
                 {
                   "id": 2322,
                   "label": "Item 2-3-2-2",
-                  "isExpanded": true,
+                  "isExpanded": false,
                   "nodeChildren": [
                     {
                       "id": 23221,
@@ -76,7 +76,7 @@
     {
       "id": 4,
       "label": "Item 4",
-      "isExpanded": true,
+      "isExpanded": false,
       "nodeChildren": [
         {
           "id": 41,
