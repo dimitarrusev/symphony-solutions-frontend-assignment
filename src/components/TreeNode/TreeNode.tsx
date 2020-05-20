@@ -5,15 +5,12 @@
  * ------------------------------------------------------------------------------------ */
 
 // Vendor
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
+import cloneDeep from "lodash/cloneDeep";
 
 // Types
-import {
-  TreeDataPropType,
-  TreeNodePropsType,
-  TreeNodeIsExpandedPropType,
-} from "../../utils/types";
+import { TreeNodePropsType } from "../../utils/types";
 
 // Context
 import { useTree } from "../../context";
@@ -23,7 +20,7 @@ import StyledTree from "../Tree/StyledTree";
 import StyledTreeNode from "./StyledTreeNode";
 
 // Helpers
-import { constructNewTreeNodeStateObject } from "../../utils/helpers";
+import { toggleTreeNode } from "../../utils/helpers";
 
 /* ------------------------------------------------------------------------------------ *
  *                                                                                      *
@@ -38,31 +35,20 @@ const TreeNode: React.FC<TreeNodePropsType> = ({
   isExpanded,
   children,
 }): ReactElement => {
-  const { treeState, setTreeState } = useTree();
+  const { isLoading, setIsLoading, treeState, setTreeState } = useTree();
 
-  const [treeNodeState, setTreeNodeState] = useState<
-    TreeNodeIsExpandedPropType
-  >(isExpanded ? "is-expanded" : "is-collapsed");
-
-  const toggleTreeNodeState = async (
-    treeNodeID: number,
-    treeNodeState: TreeNodeIsExpandedPropType,
-    treeState: TreeDataPropType
-  ) => {
-    const newTreeState = await constructNewTreeNodeStateObject(
-      treeNodeID,
-      treeState
-    );
-
-    setTreeState(newTreeState);
-    setTreeNodeState(
-      treeNodeState === "is-expanded" ? "is-collapsed" : "is-expanded"
+  const toggleTreeNodeState = () => {
+    const currTreeState = cloneDeep(treeState);
+    const newTreeState = toggleTreeNode(
+      Number(id),
+      isExpanded ? false : true,
+      currTreeState
     );
   };
 
   const treeNodeClassName = Boolean(nodeChildren.length)
     ? `${Boolean(nodeChildren.length) && "has-children"} ${
-        Boolean(nodeChildren.length) && Boolean(treeNodeState === "is-expanded")
+        Boolean(nodeChildren.length) && isExpanded
           ? "is-expanded"
           : "is-collapsed"
       }`
@@ -70,8 +56,7 @@ const TreeNode: React.FC<TreeNodePropsType> = ({
       `${
         Boolean(React.Children.toArray(children).length) ? "has-children" : ""
       } ${
-        Boolean(React.Children.toArray(children).length) &&
-        treeNodeState === "is-expanded"
+        Boolean(React.Children.toArray(children).length) && isExpanded
           ? "is-expanded"
           : ""
       }`;
@@ -87,32 +72,14 @@ const TreeNode: React.FC<TreeNodePropsType> = ({
         {Boolean(
           nodeChildren.length
         ) /* IF `nodeChildren.length` is  truthy => using imperative API */ ? (
-          <span
-            className="icon"
-            onClick={() =>
-              toggleTreeNodeState(Number(id), treeNodeState, treeState)
-            }
-          >
-            {treeNodeState === "is-expanded" ? (
-              <MdExpandLess />
-            ) : (
-              <MdExpandMore />
-            )}
+          <span className="icon" onClick={() => toggleTreeNodeState()}>
+            {isExpanded ? <MdExpandLess /> : <MdExpandMore />}
           </span>
         ) : (
           /* ELSE (`nodeChildren.length` is falsy) => using declarative API */
           Boolean(React.Children.toArray(children).length) && (
-            <span
-              className="icon"
-              onClick={() =>
-                toggleTreeNodeState(Number(id), treeNodeState, treeState)
-              }
-            >
-              {treeNodeState === "is-expanded" ? (
-                <MdExpandLess />
-              ) : (
-                <MdExpandMore />
-              )}
+            <span className="icon" onClick={() => toggleTreeNodeState()}>
+              {isExpanded ? <MdExpandLess /> : <MdExpandMore />}
             </span>
           )
         )}

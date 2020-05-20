@@ -16,7 +16,7 @@ import { Tree } from "../components/Tree";
 import Button from "../components/Button";
 
 // Helpers
-import { expandAllTreeNodes } from "../utils/helpers";
+import { toggleAllTreeNodes } from "../utils/helpers";
 
 // Styles
 import { GlobalStyle } from "../styles";
@@ -53,13 +53,9 @@ const App = () => {
           <Button
             icon="plus"
             onClick={() => {
-              console.log("Current tree state:", treeState);
-
               const currTreeState = cloneDeep(treeState);
-              const newTreeState = expandAllTreeNodes(currTreeState);
+              const newTreeState = toggleAllTreeNodes(currTreeState);
               setTreeState(newTreeState);
-
-              console.log("New tree state:", newTreeState);
             }}
           >
             Expand all
@@ -67,22 +63,18 @@ const App = () => {
         ) : (
           treeState.totalExpandedTreeNodes ===
             treeState.totalExpandableTreeNodes && (
-            <Button icon="minus">Collapse all</Button>
+            <Button
+              icon="minus"
+              onClick={() => {
+                const currTreeState = cloneDeep(treeState);
+                const newTreeState = toggleAllTreeNodes(currTreeState, false);
+                setTreeState(newTreeState);
+              }}
+            >
+              Collapse all
+            </Button>
           )
         )}
-
-        {/* <br />
-        <button
-          onClick={() => {
-            let currTreeState = cloneDeep(treeState);
-            currTreeState.treeNodes[1].isExpanded = true;
-            console.log(currTreeState);
-            // let newTreeState = expandAllTreeNodes(currTreeState);
-            setTreeState(currTreeState);
-          }}
-        >
-          debugging
-        </button> */}
       </TreeContextProvider>
     </>
   );

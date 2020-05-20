@@ -8,16 +8,11 @@
 import React, { createContext, useState, useEffect } from "react";
 
 // Types
-import {
-  TreeContextType,
-  TreeContextProviderPropsType,
-  TreeDataPropType,
-  TreeNodePropsType,
-} from "../utils/types";
+import { TreeContextType, TreeContextProviderPropsType } from "../utils/types";
 
 // Helpers
 import { createContextWrapper } from "./createContextWrapper";
-import { constructNewTreeStateObject } from "../utils/helpers";
+import { constructNewTreeState } from "../utils/helpers";
 
 const [useTree, CtxProvider] = createContextWrapper<TreeContextType>();
 
@@ -52,13 +47,13 @@ const TreeContextProvider = ({ children }: TreeContextProviderPropsType) => {
       const response = await fetch("http://localhost:3000/data");
       const data = await response.json();
 
-      const newTreeState = await constructNewTreeStateObject(
-        data,
-        isLoading,
-        setIsLoading,
-        treeState,
-        setTreeState
-      );
+      const newTreeState = await constructNewTreeState({
+        isLoading: false,
+        setIsLoading: () => {},
+        treeNodes: data,
+        totalExpandableTreeNodes: 0,
+        totalExpandedTreeNodes: 0,
+      });
 
       setTreeState(newTreeState);
       setIsLoading(false);
