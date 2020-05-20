@@ -44,6 +44,8 @@ const TreeNode: React.FC<TreeNodePropsType> = ({
       isExpanded ? false : true,
       currTreeState
     );
+
+    setTreeState(newTreeState);
   };
 
   const treeNodeClassName = Boolean(nodeChildren.length)
